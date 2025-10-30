@@ -1,28 +1,37 @@
 public class Card {
-    private int rank;
-    private char suit;
+    private final String rank;
+    private final String suit;
+    private final int value;
 
-    public Card(int rank, char suit) {
-        if (rank < 1 || rank > 9) {
-            throw new IllegalArgumentException();
-        }
-        if ("HDCS".indexOf(suit) < 0) {
-            throw new IllegalArgumentException();
-        }
+    // create a card with the given rank and suit
+    public Card(String rank, String suit) {
         this.rank = rank;
         this.suit = suit;
+
+        switch (rank) {
+            case "A":
+                this.value = 1;
+                break;
+            case "J":
+            case "Q":
+            case "K":
+                this.value = 10;
+                break;
+            default:
+                this.value = Integer.parseInt(rank);
+                break;
+        }
     }
 
-    public int getRank() {
-        return rank;
+    public int getValue() {
+        return this.value;
     }
-    public char getSuit() {
-        return suit;
+
+    public boolean isAce() {
+        return this.rank.equals("A");
     }
-    public boolean isAce(){
-        return rank == 1;
-    }
-    public boolean isFace(){
-        return rank == 11 || rank == 12 || rank == 13;
+
+    public String toString() {
+        return this.rank + " " + this.suit;
     }
 }
