@@ -2,30 +2,30 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Deck {
-    private ArrayList<Card> cards;
+    private final ArrayList<Card> cards;
 
     public Deck() {
-        cards = new ArrayList<>();
+        this.cards = new ArrayList<>();
 
         String[] suits = {"C", "D", "H", "S"};
         String[] ranks = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
 
         for (String suit : suits) {
             for (String rank : ranks) {
-                cards.add(new Card(suit, rank));
+                this.cards.add(new Card(rank, suit));
             }
         }
         shuffle();
     }
 
     public void shuffle() {
-        Collections.shuffle(cards);
+        Collections.shuffle(this.cards);
     }
 
     public Card draw() {
-        if (cards.size() == 0) {
+        if (this.cards.isEmpty()) {
             return null;
         }
-        return cards.remove(0);
+        return this.cards.remove(0);
     }
 }
