@@ -32,6 +32,6 @@ public class Card {
     }
 
     public String toString() {
-        return this.rank + " " + this.suit;
+        return this.rank + this.suit;
     }
 }
